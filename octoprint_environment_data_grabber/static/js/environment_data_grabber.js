@@ -2,8 +2,7 @@ $(function() {
     function EnvironmentDataViewModel(parameters) {
         var self = this;
 
-        self.luftfeuchtigkeit = ko.observable("");
-        self.temperatur = ko.observable("");
+        self.htmlContent = ko.observable("");
         self.error = ko.observable("");
 
         // Receive data from backend
@@ -14,16 +13,10 @@ $(function() {
 
             if (data.error) {
                 self.error(data.error);
-                self.luftfeuchtigkeit("");
-                self.temperatur("");
+                self.htmlContent("");
             } else {
                 self.error("");
-                if (data.luftfeuchtigkeit) {
-                    self.luftfeuchtigkeit(data.luftfeuchtigkeit);
-                }
-                if (data.temperatur) {
-                    self.temperatur(data.temperatur);
-                }
+                self.htmlContent(data.html_content);
             }
         };
     }
@@ -32,6 +25,6 @@ $(function() {
     OCTOPRINT_VIEWMODELS.push({
         construct: EnvironmentDataViewModel,
         dependencies: [],
-        elements: ["#navbar_plugin_environment_data_grabber"]
+        elements: ["#environment_data_grabber_plugin"]
     });
 });
