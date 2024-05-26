@@ -8,14 +8,16 @@ class EnvironmentDataGrabberPlugin(octoprint.plugin.StartupPlugin, octoprint.plu
         self.fetch_data()
 
     def fetch_data(self):
-        url = "http://192.168.178.57"  # Replace with the actual IP address
+        url = "http://192.168.1.100"  # Replace with the actual IP address
         try:
+            self._logger.info("Fetching data from the specified URL...")
             response = requests.get(url)
             response.raise_for_status()
             html_content = response.text
 
             # Send data to frontend
             self._plugin_manager.send_plugin_message(self._identifier, dict(html_content=html_content))
+            self._logger.info("Data fetched successfully.")
 
         except requests.RequestException as e:
             self._logger.error(f"Error fetching data: {e}")
