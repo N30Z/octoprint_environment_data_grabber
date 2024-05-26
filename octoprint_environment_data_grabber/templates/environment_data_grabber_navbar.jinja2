@@ -1,1 +1,4 @@
-<div id="navbar_plugin_environment_data_grabber" data-bind="text: 'Luftfeuchtigkeit: ' + luftfeuchtigkeit() + ' | Temperatur: ' + temperatur()"></div>
+<div id="navbar_plugin_environment_data_grabber">
+    <span data-bind="visible: error, text: error" style="color: red;"></span>
+    <span data-bind="visible: !error(), text: 'Luftfeuchtigkeit: ' + luftfeuchtigkeit() + ' | Temperatur: ' + temperatur()"></span>
+</div>
