@@ -1,16 +1,17 @@
 import octoprint.plugin
 import requests
 
-class EnvironmentDataGrabberPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.TemplatePlugin, octoprint.plugin.AssetPlugin):
+class EnvironmentDataGrabberPlugin(octoprint.plugin.StartupPlugin, octoprint.plugin.TemplatePlugin, octoprint.plugin.AssetPlugin, octoprint.plugin.SettingsPlugin):
 
     def on_startup(self, host, port):
         self._logger.info("Environment Data Grabber Plugin started")
         self.fetch_data()
 
     def fetch_data(self):
-        url = "http://192.168.178.57"  # Replace with the actual IP address
+        ip_address = self._settings.get(["ip_address"])
+        url = f"http://{ip_address}"  # Replace with the actual IP address from settings
         try:
-            self._logger.info("Fetching data from the specified URL...")
+            self._logger.info(f"Fetching data from {url}...")
             response = requests.get(url)
             response.raise_for_status()
             html_content = response.text
@@ -33,6 +34,9 @@ class EnvironmentDataGrabberPlugin(octoprint.plugin.StartupPlugin, octoprint.plu
     def get_assets(self):
         return dict(js=["js/environment_data_grabber.js"],
                     css=["css/environment_data_grabber.css"])
+
+    def get_settings_defaults(self):
+        return dict(ip_address="192.168.178.57")  # Default IP address
 
 __plugin_name__ = "Environment Data Grabber"
 __plugin_pythoncompat__ = ">=3,<4"
