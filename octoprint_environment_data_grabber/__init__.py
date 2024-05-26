@@ -9,7 +9,7 @@ class EnvironmentDataGrabberPlugin(octoprint.plugin.StartupPlugin, octoprint.plu
         self.fetch_data()
 
     def fetch_data(self):
-        url = "http://192.168.1.100/data"  # Replace with the actual IP address and endpoint
+        url = "http://192.168.178.57/"  # Replace with the actual IP address and endpoint
         try:
             response = requests.get(url)
             response.raise_for_status()
