@@ -22,7 +22,11 @@ class EnvironmentDataGrabberPlugin(octoprint.plugin.StartupPlugin, octoprint.plu
             self._plugin_manager.send_plugin_message(self._identifier, dict(error="Error fetching data: Unable to reach the website."))
 
     def get_template_configs(self):
-        return [dict(type="navbar", custom_bindings=True)]
+        return [
+            dict(type="settings", custom_bindings=True),
+            dict(type="navbar", custom_bindings=True),
+            dict(type="tab", name="Environment Data", custom_bindings=True),
+        ]
 
     def get_assets(self):
         return dict(js=["js/environment_data_grabber.js"],
