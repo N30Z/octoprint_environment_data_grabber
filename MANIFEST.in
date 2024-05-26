@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_environment_data_grabber/templates *
+recursive-include octoprint_environment_data_grabber/translations *
+recursive-include octoprint_environment_data_grabber/static *
