@@ -1,4 +1,6 @@
-<div id="navbar_plugin_environment_data_grabber">
-    <span data-bind="visible: error, text: error" style="color: red;"></span>
-    <span data-bind="visible: !error(), text: 'Luftfeuchtigkeit: ' + luftfeuchtigkeit() + ' | Temperatur: ' + temperatur()"></span>
+<div class="container">
+    <div data-bind="visible: error" style="color: red;">Error: <span data-bind="text: error"></span></div>
+    <div data-bind="visible: !error()" style="white-space: pre-wrap;">
+        <span data-bind="html: htmlContent"></span>
+    </div>
 </div>
