@@ -2,9 +2,9 @@ $(function() {
     function EnvironmentDataViewModel(parameters) {
         var self = this;
 
-        self.luftfeuchtigkeit = ko.observable();
-        self.temperatur = ko.observable();
-        self.error = ko.observable();
+        self.luftfeuchtigkeit = ko.observable("");
+        self.temperatur = ko.observable("");
+        self.error = ko.observable("");
 
         // Receive data from backend
         self.onDataUpdaterPluginMessage = function(plugin, data) {
